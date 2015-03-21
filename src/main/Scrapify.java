@@ -1,5 +1,9 @@
 package main;
 
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
 public class Scrapify {
     
     public static void main(String[] args) {
@@ -8,6 +12,13 @@ public class Scrapify {
         
         String html = "<html><head><title>123</title></head><body><div class=\"abc\"><div class=\"def\" " +
             "data-test=\"test\">123</div>456</div>789</body></html>";
+        
+        Scrapify s = new Scrapify();
+        s.parse(path);
+    }
+    
+    public List<String> parse(String path) {
+        return new LinkedList<>(Arrays.asList(path.split("/")));
     }
     
 }
