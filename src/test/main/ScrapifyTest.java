@@ -21,6 +21,7 @@ public class ScrapifyTest {
         Assert.assertEquals(exp, act);
     }
     
+    @Test
     public void absoluteTrue() {
         boolean act = s.absolute(path);
         
