@@ -7,7 +7,7 @@ public class Scrapify {
         String path2 = "/.abc[0]/.def[0]/@data-test";
         
         String html = "<html><head><title>123</title></head><body><div class=\"abc\"><div class=\"def\" " +
-            "data-test=\"test\">123</div>456</div>789</body></hmtl>";
+            "data-test=\"test\">123</div>456</div>789</body></html>";
     }
     
 }
