@@ -21,4 +21,8 @@ public class Scrapify {
         return new LinkedList<>(Arrays.asList(path.split("/")));
     }
     
+    public boolean absolute(List<String> path) {
+        return path.get(0).equals("");
+    }
+    
 }
