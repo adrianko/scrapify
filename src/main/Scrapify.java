@@ -16,6 +16,7 @@ public class Scrapify {
             "data-test=\"test\">123</div>456</div>789</body></html>";
         
         Scrapify s = new Scrapify();
+        s.setHTML(html);
         s.parse(path);
     }
     
