@@ -1,5 +1,8 @@
 package main;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Element;
+
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -25,6 +28,8 @@ public class Scrapify {
     }
     
     public List<String> parse(String path) {
+        Element element = Jsoup.parse(html);
+        System.out.println(element);
         return new LinkedList<>(Arrays.asList(path.split("/")));
     }
     
