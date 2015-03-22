@@ -6,6 +6,8 @@ import java.util.List;
 
 public class Scrapify {
     
+    public String html;
+    
     public static void main(String[] args) {
         String path = "/.abc[0]/.def[0]/text()";
         String path2 = "/.abc[0]/.def[0]/@data-test";
@@ -15,6 +17,10 @@ public class Scrapify {
         
         Scrapify s = new Scrapify();
         s.parse(path);
+    }
+    
+    public void setHTML(String html) {
+        this.html = html;
     }
     
     public List<String> parse(String path) {
