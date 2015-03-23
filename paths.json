@@ -1,0 +1,4 @@
+{
+  "text": "/.abc[0]/.def[0]/text()",
+  "attr": "/.abc[0]/.def[0]/@data-test"
+}
