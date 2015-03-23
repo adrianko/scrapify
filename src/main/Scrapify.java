@@ -6,6 +6,7 @@ import org.json.simple.parser.ParseException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -48,7 +49,7 @@ public class Scrapify {
         Map<String, String> paths = new HashMap<>();
 
         try {
-            String file = Files.readAllLines(Paths.get(filePath)).toString();
+            String file = Files.readAllLines(Paths.get(new File(filePath).getAbsolutePath())).toString();
             JSONObject json = (JSONObject) new JSONParser().parse(file);
 
             for (Object key : json.keySet()) {
