@@ -19,8 +19,8 @@ public class Scrapify {
     
     public static void main(String[] args) {
         Scrapify s = new Scrapify();
-        //Map<String, String> elements = s.getPaths(basePath + "/paths.json");
-        //System.out.println(elements);
+        Map<String, String> elements = s.getPaths(basePath + "/paths.json");
+        System.out.println(elements);
         
         String html = s.getHTML(basePath + "/data.html");
         System.out.println(html);
@@ -54,7 +54,7 @@ public class Scrapify {
         Map<String, String> paths = new HashMap<>();
 
         try {
-            String file = Files.readAllLines(Paths.get(new File(filePath).getAbsolutePath())).toString();
+            String file = new String(Files.readAllBytes(Paths.get(filePath)));
             JSONObject json = (JSONObject) new JSONParser().parse(file);
 
             for (Object key : json.keySet()) {
