@@ -14,11 +14,16 @@ import java.util.*;
 
 public class Scrapify {
     
+    public static String basePath = new File(Scrapify.class.getResource(".").getPath() + "../../../../").getAbsolutePath();
     public String html;
     
     public static void main(String[] args) {
         Scrapify s = new Scrapify();
+        //Map<String, String> elements = s.getPaths(basePath + "/paths.json");
+        //System.out.println(elements);
         
+        String html = s.getHTML(basePath + "/data.html");
+        System.out.println(html);
     }
     
     public void setHTML(String html) {
@@ -37,7 +42,7 @@ public class Scrapify {
     
     public String getHTML(String filePath) {
         try {
-            return Files.readAllLines(Paths.get(filePath)).toString();
+            return new String(Files.readAllBytes(Paths.get(filePath)));
         } catch (IOException e) {
             e.printStackTrace();
         }
