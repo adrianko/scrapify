@@ -14,7 +14,8 @@ import java.util.*;
 
 public class Scrapify {
     
-    public static String basePath = new File(Scrapify.class.getResource(".").getPath() + "../../../../").getAbsolutePath();
+    public static String basePath = new File(Scrapify.class.getResource(".").getPath() + "../../../../")
+        .getAbsolutePath();
     public String html;
     
     public static void main(String[] args) {
