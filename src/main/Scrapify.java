@@ -42,7 +42,11 @@ public class Scrapify {
         Document element = Jsoup.parse(html);
         
         for (String e : Arrays.asList(path.split("/"))) {
-            
+            if (e.startsWith("@") || e.endsWith("()")) {
+                // attribute
+            } else {
+                // element
+            }
         }
         
         return element.body();
