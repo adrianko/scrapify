@@ -19,10 +19,12 @@ public class Scrapify {
     
     public static void main(String[] args) {
         Scrapify s = new Scrapify();
-        Map<String, String> elements = s.getPaths(basePath + "/paths.json");
-        System.out.println(elements);
-        
         s.setHTML(s.getHTML(basePath + "/data.html"));
+
+        s.getPaths(basePath + "/paths.json").forEach((element, path) -> {
+            s.parse(path);
+        });
+
     }
     
     public void setHTML(String html) {
