@@ -58,7 +58,8 @@ public class Scrapify {
     
     public String getHTML(String filePath) {
         try {
-            return new String(Files.readAllBytes(Paths.get(filePath)));
+            return String.join("", Files.readAllLines(Paths.get(filePath))).replaceAll("[\\t\\n\\r]+", "")
+                .replaceAll(">\\s+<", "><").replaceAll("\\s+", " ").replaceAll(">\\s+", ">").replaceAll("\\s+<", "<");
         } catch (IOException e) {
             e.printStackTrace();
         }
