@@ -70,11 +70,11 @@ public class Scrapify {
         Map<String, String> paths = new HashMap<>();
 
         try {
-            String file = new String(Files.readAllBytes(Paths.get(filePath)));
-            JSONObject json = (JSONObject) new JSONParser().parse(file);
-
-            for (Object key : json.keySet()) {
-                paths.put(key.toString(), String.valueOf(json.get(key.toString())));
+            JSONObject json = (JSONObject) new JSONParser().parse(new String(Files.readAllBytes(Paths.get(filePath))));
+            
+            for (Object pair : json.entrySet()) {
+                Map.Entry p = (Map.Entry) pair;
+                paths.put(p.getKey().toString(), p.getValue().toString());
             }
         } catch (IOException | ParseException e) {
             e.printStackTrace();
