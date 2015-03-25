@@ -4,6 +4,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
 import java.io.File;
@@ -38,13 +39,13 @@ public class Scrapify {
     public Element parse(String path) {
         //"text": "/.abc[0]/.def[0]/text()",
         //"attr": "/.abc[0]/.def[0]/@data-test"
-        Element element = Jsoup.parse(html);
+        Document element = Jsoup.parse(html);
         
         for (String e : Arrays.asList(path.split("/"))) {
             
         }
         
-        return element;
+        return element.body();
     }
     
     public boolean absolute(List<String> path) {
