@@ -49,4 +49,13 @@ public class ScrapifyTest {
         Assert.assertEquals(exp, act);
     }
     
+    @Test
+    public void getHTML() {
+        String exp = "<html><head><title>123</title></head><body><div class=\"abc\"><div class=\"def\" " +
+            "data-test=\"test\">123</div>456</div>789</body></html>";
+        String act = scrapify.getHTML(basePath + "/data.html");
+        
+        Assert.assertEquals(exp, act);
+    }
+    
 }
