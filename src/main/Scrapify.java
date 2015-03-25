@@ -22,8 +22,7 @@ public class Scrapify {
         Map<String, String> elements = s.getPaths(basePath + "/paths.json");
         System.out.println(elements);
         
-        String html = s.getHTML(basePath + "/data.html");
-        System.out.println(html);
+        s.setHTML(s.getHTML(basePath + "/data.html"));
     }
     
     public void setHTML(String html) {
