@@ -5,7 +5,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 
 public class ScrapifyTest {
@@ -16,10 +15,8 @@ public class ScrapifyTest {
     
     @Test
     public void parse() {
-        List<String> exp = new LinkedList<>(absolutePath);
-        List<String> act = scrapify.parse("/.abc[0]/.def[0]/text()");
-
-        Assert.assertEquals(exp, act);
+        scrapify.setHTML("<html></html>");
+        Assert.assertEquals(scrapify.parse("").getClass(), org.jsoup.nodes.Element.class);
     }
     
     @Test
