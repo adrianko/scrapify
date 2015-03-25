@@ -22,9 +22,12 @@ public class Scrapify {
         Scrapify s = new Scrapify();
         s.setHTML(s.getHTML(basePath + "/data.html"));
 
+        Map<String, Element> elements = new HashMap<>();
         s.getPaths(basePath + "/paths.json").forEach((element, path) -> {
-            s.parse(path);
+            elements.put(element, s.parse(path));
         });
+
+        System.out.println(elements);
 
     }
     
@@ -32,10 +35,16 @@ public class Scrapify {
         this.html = html;
     }
     
-    public List<String> parse(String path) {
+    public Element parse(String path) {
+        //"text": "/.abc[0]/.def[0]/text()",
+        //"attr": "/.abc[0]/.def[0]/@data-test"
         Element element = Jsoup.parse(html);
-        System.out.println(element);
-        return new LinkedList<>(Arrays.asList(path.split("/")));
+        
+        for (String e : Arrays.asList(path.split("/"))) {
+            
+        }
+        
+        return element;
     }
     
     public boolean absolute(List<String> path) {
