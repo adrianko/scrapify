@@ -5,6 +5,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.File;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -56,6 +57,11 @@ public class ScrapifyTest {
         String act = scrapify.getHTML(basePath + "/data.html");
         
         Assert.assertEquals(exp, act);
+    }
+    
+    @Test
+    public void basePath() {
+        Assert.assertEquals(Paths.get(basePath).normalize(), Paths.get(Scrapify.basePath).normalize());
     }
     
 }
