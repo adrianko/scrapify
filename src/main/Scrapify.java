@@ -56,6 +56,7 @@ public class Scrapify {
                         try {
                             System.out.println(m.invoke(el));
                             System.out.println("--------------------------------");
+                            break;
                         } catch (IllegalAccessException | InvocationTargetException ex) {
                             ex.printStackTrace();
                         }
@@ -72,7 +73,7 @@ public class Scrapify {
             }
         }
         
-        return element.body();
+        return el;
     }
     
     public boolean absolute(List<String> path) {
