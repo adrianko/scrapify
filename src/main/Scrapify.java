@@ -10,6 +10,8 @@ import org.jsoup.select.Elements;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
@@ -47,6 +49,19 @@ public class Scrapify {
                 System.out.println("--------------------------------");
             } else if (e.endsWith("()")) {
                 //method
+                String func = e.substring(0, e.length() - 2);
+                
+                for (Method m : Element.class.getMethods()) {
+                    if (m.getName().equals(func) && m.getParameterCount() == 0) {
+                        try {
+                            System.out.println(m.invoke(el));
+                            System.out.println("--------------------------------");
+                        } catch (IllegalAccessException | InvocationTargetException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+                }
+                
             } else if (!e.equals("")) {
                 // element
                 int index = Integer.parseInt(e.substring(e.indexOf("[") + 1, e.indexOf("]")));
