@@ -43,9 +43,10 @@ public class Scrapify {
         
         for (String e : Arrays.asList(path.split("/"))) {
             if (e.startsWith("@")) {
-                
+                System.out.println(el.attr(e.substring(1)));
+                System.out.println("--------------------------------");
             } else if (e.endsWith("()")) {
-                System.out.println();
+                //method
             } else if (!e.equals("")) {
                 // element
                 int index = Integer.parseInt(e.substring(e.indexOf("[") + 1, e.indexOf("]")));
