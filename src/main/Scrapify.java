@@ -6,6 +6,7 @@ import org.json.simple.parser.ParseException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 import java.io.File;
 import java.io.IOException;
@@ -28,8 +29,6 @@ public class Scrapify {
             elements.put(element, s.parse(path));
         });
 
-        System.out.println(elements);
-
     }
     
     public void setHTML(String html) {
@@ -40,12 +39,20 @@ public class Scrapify {
         //"text": "/.abc[0]/.def[0]/text()",
         //"attr": "/.abc[0]/.def[0]/@data-test"
         Document element = Jsoup.parse(html);
+        Element el = element.body();
         
         for (String e : Arrays.asList(path.split("/"))) {
-            if (e.startsWith("@") || e.endsWith("()")) {
-                // attribute
-            } else {
+            if (e.startsWith("@")) {
+                
+            } else if (e.endsWith("()")) {
+                System.out.println();
+            } else if (!e.equals("")) {
                 // element
+                int index = Integer.parseInt(e.substring(e.indexOf("[") + 1, e.indexOf("]")));
+                String sel = e.substring(0, e.indexOf("["));
+                el = el.select(sel).get(index);
+                System.out.println(el.outerHtml());
+                System.out.println("--------------------------------");
             }
         }
         
