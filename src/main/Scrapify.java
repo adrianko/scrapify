@@ -30,7 +30,8 @@ public class Scrapify {
         s.getPaths(basePath + "/paths.json").forEach((element, path) -> {
             elements.put(element, s.parse(path));
         });
-
+        
+        System.out.println(elements);
     }
     
     public void setHTML(String html) {
@@ -42,34 +43,32 @@ public class Scrapify {
         //"attr": "/.abc[0]/.def[0]/@data-test"
         Document element = Jsoup.parse(html);
         Element el = element.body();
+        String attribute;
+        Object funcReturn;
         
         for (String e : Arrays.asList(path.split("/"))) {
             if (e.startsWith("@")) {
-                System.out.println(el.attr(e.substring(1)));
-                System.out.println("--------------------------------");
+                attribute = el.attr(e.substring(1));
             } else if (e.endsWith("()")) {
                 //method
                 String func = e.substring(0, e.length() - 2);
                 
                 for (Method m : Element.class.getMethods()) {
+                    System.out.println(m);
                     if (m.getName().equals(func) && m.getParameterCount() == 0) {
                         try {
-                            System.out.println(m.invoke(el));
-                            System.out.println("--------------------------------");
+                            funcReturn = m.invoke(el);
                             break;
                         } catch (IllegalAccessException | InvocationTargetException ex) {
                             ex.printStackTrace();
                         }
                     }
                 }
-                
             } else if (!e.equals("")) {
                 // element
                 int index = Integer.parseInt(e.substring(e.indexOf("[") + 1, e.indexOf("]")));
                 String sel = e.substring(0, e.indexOf("["));
                 el = el.select(sel).get(index);
-                System.out.println(el.outerHtml());
-                System.out.println("--------------------------------");
             }
         }
         
