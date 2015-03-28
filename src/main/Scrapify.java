@@ -54,7 +54,6 @@ public class Scrapify {
                 String func = e.substring(0, e.length() - 2);
                 
                 for (Method m : Element.class.getMethods()) {
-                    System.out.println(m);
                     if (m.getName().equals(func) && m.getParameterCount() == 0) {
                         try {
                             funcReturn = m.invoke(el);
