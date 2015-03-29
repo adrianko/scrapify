@@ -22,7 +22,7 @@ public class ScrapifyTest {
     @Test
     public void parse() {
         scrapify.setHTML("<html></html>");
-        Assert.assertEquals(scrapify.parse("").getClass(), org.jsoup.nodes.Element.class);
+        Assert.assertEquals(scrapify.parse("").getClass(), String.class);
     }
     
     @Test

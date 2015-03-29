@@ -26,7 +26,7 @@ public class Scrapify {
         Scrapify s = new Scrapify();
         s.setHTML(s.getHTML(basePath + "/data.html"));
 
-        Map<String, Element> elements = new HashMap<>();
+        Map<String, String> elements = new HashMap<>();
         s.getPaths(basePath + "/paths.json").forEach((element, path) -> {
             elements.put(element, s.parse(path));
         });
@@ -38,17 +38,18 @@ public class Scrapify {
         this.html = html;
     }
     
-    public Element parse(String path) {
+    public String parse(String path) {
         //"text": "/.abc[0]/.def[0]/text()",
         //"attr": "/.abc[0]/.def[0]/@data-test"
         Document element = Jsoup.parse(html);
         Element el = element.body();
         String attribute;
         Object funcReturn;
+        String result;
         
         for (String e : Arrays.asList(path.split("/"))) {
             if (e.startsWith("@")) {
-                attribute = el.attr(e.substring(1));
+                return el.attr(e.substring(1));
             } else if (e.endsWith("()")) {
                 //method
                 String func = e.substring(0, e.length() - 2);
@@ -56,8 +57,7 @@ public class Scrapify {
                 for (Method m : Element.class.getMethods()) {
                     if (m.getName().equals(func) && m.getParameterCount() == 0) {
                         try {
-                            funcReturn = m.invoke(el);
-                            break;
+                            return m.invoke(el).toString();
                         } catch (IllegalAccessException | InvocationTargetException ex) {
                             ex.printStackTrace();
                         }
@@ -71,7 +71,7 @@ public class Scrapify {
             }
         }
         
-        return el;
+        return el.toString();
     }
     
     public boolean absolute(List<String> path) {
