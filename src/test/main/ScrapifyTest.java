@@ -28,13 +28,13 @@ public class ScrapifyTest {
     @Test
     public void parseText() {
         scrapify.setHTML("<html><body><div class=\"test\">Hello</div></body></html>");
-        Assert.assertEquals(scrapify.parse("/.test/text()"), "Hello");
+        Assert.assertEquals(scrapify.parse("/.test[0]/text()"), "Hello");
     }
     
     @Test
     public void parseAttribute() {
         scrapify.setHTML("<html><body><div class=\"test\" data-id=\"5\">Hello</div></body></html>");
-        Assert.assertEquals(scrapify.parse("/.test/@data-id"), "5");
+        Assert.assertEquals(scrapify.parse("/.test[0]/@data-id"), "5");
     }
     
     @Test
