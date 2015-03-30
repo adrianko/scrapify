@@ -26,6 +26,12 @@ public class ScrapifyTest {
     }
     
     @Test
+    public void parseText() {
+        scrapify.setHTML("<html><body><div class=\"test\">Hello</div></body></html>");
+        Assert.assertEquals(scrapify.parse("/.test/text()"), "Hello");
+    }
+    
+    @Test
     public void absoluteTrue() {
         boolean act = scrapify.absolute(absolutePath);
         
