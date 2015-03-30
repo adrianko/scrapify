@@ -32,6 +32,12 @@ public class ScrapifyTest {
     }
     
     @Test
+    public void parseAttribute() {
+        scrapify.setHTML("<html><body><div class=\"test\" data-id=\"5\">Hello</div></body></html>");
+        Assert.assertEquals(scrapify.parse("/.test/@data-id"), "5");
+    }
+    
+    @Test
     public void absoluteTrue() {
         boolean act = scrapify.absolute(absolutePath);
         
