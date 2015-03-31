@@ -43,9 +43,6 @@ public class Scrapify {
         //"attr": "/.abc[0]/.def[0]/@data-test"
         Document element = Jsoup.parse(html);
         Element el = element.body();
-        String attribute;
-        Object funcReturn;
-        String result;
         
         for (String e : Arrays.asList(path.split("/"))) {
             if (e.startsWith("@")) {
