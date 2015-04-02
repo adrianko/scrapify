@@ -1,1 +1,27 @@
 apply plugin: 'java'
+
+repositories {
+    flatDir {
+        dirs 'lib'
+    }
+}
+
+dependencies {
+    compile name: 'hamcrest-all-1.3'
+    compile name: 'json-simple-1.1.1'
+    compile name: 'jsoup-1.8.1'
+    compile name: 'junit-4.12'
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src'
+        }
+    }
+}
+
+task execute(type: JavaExec) {
+    main = 'main.Scrapify'
+    classpath = sourceSets.main.runtimeClasspath
+}
