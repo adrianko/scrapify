@@ -28,15 +28,15 @@ public class ScrapifyTest {
     @Test
     public void parseText() {
         scrapify.setHTML("<html><body><div class=\"test\">Hello</div></body></html>");
-        Assert.assertEquals(scrapify.parse("/.test[0]/text()"), "Hello");
+        Assert.assertEquals("Hello", scrapify.parse("/.test[0]/text()"));
     }
     
     @Test
     public void parseAttribute() {
         scrapify.setHTML("<html><body><div class=\"test\" data-id=\"5\">Hello</div></body></html>");
-        Assert.assertEquals(scrapify.parse("/.test[0]/@data-id"), "5");
+        Assert.assertEquals("5", scrapify.parse("/.test[0]/@data-id"));
     }
-    
+
     @Test
     public void absoluteTrue() {
         boolean act = scrapify.absolute(absolutePath);
