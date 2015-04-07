@@ -5,6 +5,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.File;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -21,20 +22,29 @@ public class ScrapifyTest {
     
     @Test
     public void parse() {
+        Class exp = String.class;
         scrapify.setHTML("<html></html>");
-        Assert.assertEquals(scrapify.parse("").getClass(), String.class);
+        Class act = scrapify.parse("").getClass();
+        
+        Assert.assertEquals(exp, act);
     }
     
     @Test
     public void parseText() {
-        scrapify.setHTML("<html><body><div class=\"test\">Hello</div></body></html>");
-        Assert.assertEquals("Hello", scrapify.parse("/.test[0]/text()"));
+        String exp = "Hello";
+        scrapify.setHTML("<html><body><div class=\"test\" data-id=\"5\">Hello</div></body></html>");
+        String act = scrapify.parse("/.test[0]/text()");
+
+        Assert.assertEquals(exp, act);
     }
     
     @Test
     public void parseAttribute() {
+        String exp = "5";
         scrapify.setHTML("<html><body><div class=\"test\" data-id=\"5\">Hello</div></body></html>");
-        Assert.assertEquals("5", scrapify.parse("/.test[0]/@data-id"));
+        String act = scrapify.parse("/.test[0]/@data-id");
+        
+        Assert.assertEquals(exp, act);
     }
 
     @Test
@@ -73,7 +83,10 @@ public class ScrapifyTest {
     
     @Test
     public void basePath() {
-        Assert.assertEquals(Paths.get(basePath).normalize(), Paths.get(Scrapify.basePath).normalize());
+        Path exp = Paths.get(basePath).normalize();
+        Path act = Paths.get(Scrapify.basePath).normalize();
+        
+        Assert.assertEquals(exp, act);
     }
     
 }
